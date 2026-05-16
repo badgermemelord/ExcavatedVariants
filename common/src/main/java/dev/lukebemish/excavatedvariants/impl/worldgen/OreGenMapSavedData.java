@@ -76,7 +76,8 @@ public class OreGenMapSavedData extends SavedData {
         // (handled by a mixin)
         //noinspection DataFlowIssue
         return world.getLevel().getDataStorage().computeIfAbsent(
-                new SavedData.Factory<>(OreGenMapSavedData::create, OreGenMapSavedData::load, null),
+                OreGenMapSavedData::load,
+                OreGenMapSavedData::create,
                 DATA_KEY
         );
     }

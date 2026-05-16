@@ -34,7 +34,6 @@ modsDotGroovy {
     dslVersion = libs.versions.mdg.dsl.get()
     platform 'multiloader'
     multiloader {
-        forge = [project(':neoforge')]
         fabric = [project(':fabriquilt')]
         quilt = [project(':fabriquilt')]
     }
