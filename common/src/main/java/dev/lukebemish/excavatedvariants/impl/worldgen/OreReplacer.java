@@ -116,6 +116,7 @@ public class OreReplacer extends Feature<NoneFeatureConfiguration> {
 }
 */
 
+
 package dev.lukebemish.excavatedvariants.impl.worldgen;
 
 import dev.lukebemish.excavatedvariants.api.data.Ore;
@@ -159,7 +160,10 @@ public class OreReplacer extends Feature<NoneFeatureConfiguration> {
         for (int i = 0; i < xs.length; i++) {
             newPos.setX(pos.getX() + xs[i] * 16);
             newPos.setZ(pos.getZ() + zs[i] * 16);
-            OreGenMapSavedData.ChunkKey chunkPos = new OreGenMapSavedData.ChunkKey(newPos.getX(), newPos.getZ());
+            OreGenMapSavedData.ChunkKey chunkPos = new OreGenMapSavedData.ChunkKey(
+                    SectionPos.blockToSectionCoord(newPos.getX()),
+                    SectionPos.blockToSectionCoord(newPos.getZ())
+            );
             data.incrEdgeCount(chunkPos);
             if (data.getEdgeCount(chunkPos) >= 8 && data.didChunkRun(chunkPos)) {
                 ChunkAccess chunkAccess = level.getChunk(newPos);
@@ -167,7 +171,10 @@ public class OreReplacer extends Feature<NoneFeatureConfiguration> {
                 data.setEdgeCount(chunkPos, 9);
             }
         }
-        OreGenMapSavedData.ChunkKey chunkPos = new OreGenMapSavedData.ChunkKey(pos.getX(), pos.getZ());
+        OreGenMapSavedData.ChunkKey chunkPos = new OreGenMapSavedData.ChunkKey(
+                SectionPos.blockToSectionCoord(pos.getX()),
+                SectionPos.blockToSectionCoord(pos.getZ())
+        );
         data.chunkRan(chunkPos);
         if (data.getEdgeCount(chunkPos) >= 8) {
             ChunkAccess chunkAccess = level.getChunk(pos);
