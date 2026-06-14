@@ -86,7 +86,7 @@ public final class OreFinderUtil {
     }
 
     public static @Nullable Block getBlock(Ore ore, Stone newStone) {
-        if (ModLifecycle.getLifecyclePhase() == ModLifecycle.POST) {
+        if (ModLifecycle.getLifecyclePhase() != ModLifecycle.REGISTRATION) {
             var map = ORE_STONE_MAP.get(ore);
             if (map != null) {
                 return map.get(newStone);
